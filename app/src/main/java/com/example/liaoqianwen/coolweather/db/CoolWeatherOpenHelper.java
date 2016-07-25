@@ -12,7 +12,7 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper{
     /**
      *创建省份表的sql语句
      */
-    public static final String CREATE_PROVINCE = "create table Provice ("
+    public static final String CREATE_PROVINCE = "create table Province ("
             + "id integer primary key autoincrement, "
             + "province_name text, "
             + "province_code text)";
