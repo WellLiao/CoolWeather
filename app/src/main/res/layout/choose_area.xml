@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#484E61">
+        android:background="#FF4E99"> <!-- #484E61-->
 
         <TextView
             android:id="@+id/title_text"

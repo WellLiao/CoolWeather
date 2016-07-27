@@ -66,7 +66,7 @@ public class ChooseAreaActivity extends Activity {
         isFromWeatherActivity = getIntent().getBooleanExtra("from_weather_activity",false);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        // 已经选择了城市其不是从WeatherActivity跳转过来，才会直接跳转到WeatherActivity
+        // 已经选择了城市且不是从WeatherActivity跳转过来，才会直接跳转到WeatherActivity
         if(prefs.getBoolean("city_selected", false) && !isFromWeatherActivity) {
             Intent intent = new Intent(this, WeatherActivity.class);
             startActivity(intent);
