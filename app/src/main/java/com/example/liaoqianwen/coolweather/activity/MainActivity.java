@@ -17,7 +17,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
         Button enterCoolWeather = (Button) findViewById(R.id.enterCoolWeather);
         Button forceOffline = (Button) findViewById(R.id.force_offline);
+        enterCoolWeather.setOnClickListener(this);
         forceOffline.setOnClickListener(this);
+
     }
 
     @Override
