@@ -31,5 +31,11 @@
         android:layout_height="wrap_content"
         android:text="Pop a Dialog"/>
 
+    <Button
+        android:id="@+id/viewDemo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Demo特性和使用"/>
+
 
 </LinearLayout>

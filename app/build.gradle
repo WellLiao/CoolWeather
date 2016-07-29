@@ -1,5 +1,6 @@
 // 声明插件，这是一个Android程序，如果是Android库，则写成com.android.library
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt' // 为了使用ButterKnife而增加的
 
 android {
     compileSdkVersion 23
@@ -37,4 +38,7 @@ dependencies {
     }
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    // 下面两行为了使用ButterKnife项目而添加
+    compile 'com.jakewharton:butterknife:8.2.1'
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
 }

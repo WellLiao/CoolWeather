@@ -1,22 +1,24 @@
+package com.example.liaoqianwen.coolweather.activity;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Scroller;
 import android.widget.TextView;
+
+import com.example.liaoqianwen.coolweather.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ViewDemoActivity extends AppCompatActivity {
 
-    private static final String TAG = "DEBUG-WCL: " + MainActivity.class.getSimpleName();
+    private static final String TAG = "DEBUG-WCL: " + ViewDemoActivity.class.getSimpleName();
 
     @BindView(R.id.main_rl_container) RelativeLayout mRlContainer;
     @BindView(R.id.main_mtv_view_text) TextView mMtvViewText;
@@ -35,7 +37,7 @@ public class ViewDemoActivity extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.view_demo);
         ButterKnife.bind(this);
 
         mVelocityTracker = VelocityTracker.obtain(); // 初始化滑动速度追踪器

@@ -1,3 +1,5 @@
+package com.example.liaoqianwen.coolweather.model;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;

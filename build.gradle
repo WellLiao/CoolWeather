@@ -8,6 +8,7 @@ buildscript {
     // 构建过程需要依赖的库
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'  // 声明gradle插件的版本
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' // 添加的时候是为了使用ButterKnife项目，后面再深究其作用
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

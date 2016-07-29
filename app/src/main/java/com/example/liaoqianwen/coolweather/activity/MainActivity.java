@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.liaoqianwen.coolweather.R;
 
@@ -25,6 +24,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         forceOffline.setOnClickListener(this);
         Button dialogTest = (Button) findViewById(R.id.dialogTest);
         dialogTest.setOnClickListener(this);
+        Button viewDemo = (Button) findViewById(R.id.viewDemo);
+        viewDemo.setOnClickListener(this);
 
     }
 
@@ -54,6 +55,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 });
                 AlertDialog dialog = dialogBuilder.create();
                 dialog.show();
+                break;
+            case R.id.viewDemo:
+                Intent intent2 = new Intent(MainActivity.this, ViewDemoActivity.class);
+                startActivity(intent2);
 
         }
 

@@ -19,18 +19,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity">
 
-        </activity>
-        <activity android:name=".activity.ChooseAreaActivity">
+        <activity android:name=".activity.MainActivity"></activity>
 
-        </activity>
-        <activity android:name=".activity.WeatherActivity">
+        <activity android:name=".activity.ChooseAreaActivity"></activity>
 
-        </activity>
-        <service android:name=".service.AutoUpdateService">
+        <activity android:name=".activity.WeatherActivity"></activity>
 
-        </service>
+        <activity android:name=".activity.ViewDemoActivity"></activity>
+
+        <service android:name=".service.AutoUpdateService"></service>
+
         <receiver android:name=".receiver.ForceOfflineReceiver">
             <intent-filter>
                 <action android:name="com.liao.broadcastbestpractice.FORCE_OFFLINE" />
