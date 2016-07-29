@@ -3,7 +3,18 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#484E61">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            android:text="Home"/>
+    </RelativeLayout>
     <Button
         android:id="@+id/enterCoolWeather"
         android:layout_width="match_parent"
@@ -14,6 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Send force offline broadcast"/>
+    <Button
+        android:id="@+id/dialogTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pop a Dialog"/>
 
 
 </LinearLayout>

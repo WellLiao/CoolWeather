@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.example.liaoqianwen.coolweather.activity.ActivityCollector;
@@ -16,6 +17,9 @@ import com.example.liaoqianwen.coolweather.activity.LoginActivity;
 public class ForceOfflineReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
+        Log.i("ForceOfflineReceiver",String.valueOf(Thread.currentThread().getId()));
+        Log.i("ForceOfflineReceiver",context.toString());
+        Log.i("ForceOfflineReceiver","接收到强制下线的广播并开始处理");
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         dialogBuilder.setTitle("Warning");
         dialogBuilder.setMessage("You are forced to be offline. Pleage try to login again");

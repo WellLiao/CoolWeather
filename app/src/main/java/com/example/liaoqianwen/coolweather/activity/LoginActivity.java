@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity {
                 String account = accountEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
                 // 如果账号是admin密码为123456，就认为登录成功
-                if (account.equals("admin") && password.equals("123456")) {
+                if (account.equalsIgnoreCase("a") && password.equalsIgnoreCase("a")) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

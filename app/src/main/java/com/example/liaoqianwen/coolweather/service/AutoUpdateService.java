@@ -44,7 +44,7 @@ public class AutoUpdateService extends Service {
             }
         }).start();
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        int anHour = 2 * 60 * 1000; //8小时毫秒数 =8 * 60 * 60 * 1000
+        int anHour = 8 * 60 * 60 * 1000; //8小时毫秒数 =8 * 60 * 60 * 1000
         // SystemClock.elapsedRealtime() 系统开机至今所经历时间的毫秒数
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
         Intent i = new Intent(this, AutoUpdateReceiver.class);

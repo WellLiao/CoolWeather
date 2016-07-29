@@ -119,7 +119,7 @@ public class Utility {
                                        temp1, String temp2, String weatherDesp, String publishTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年M月d日",Locale.CHINA);
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        editor.putBoolean("city_selected",true);
+        editor.putBoolean("city_selected",true);  // 记录用户已经选择过城市，当用户再次进入的时候直接跳到天气信息界面
         editor.putString("city_name",cityName);
         editor.putString("weather_code",weatherCode);
         editor.putString("temp1",temp1);

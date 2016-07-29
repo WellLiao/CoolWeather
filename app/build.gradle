@@ -1,3 +1,4 @@
+// 声明插件，这是一个Android程序，如果是Android库，则写成com.android.library
 apply plugin: 'com.android.application'
 
 android {
@@ -12,14 +13,20 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        // 这里配置debug和release版本的一些参数，比如混淆、签名配置等
         release {
-            minifyEnabled false
+            minifyEnabled false   // 是否开启混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    // 加上下面这行是为了在单元测试代码中使用Log,这样虽然在单元测试中可以写Log语句，但是测试运行的时候还是没有日志输出
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
 }
 
+// 库依赖
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
