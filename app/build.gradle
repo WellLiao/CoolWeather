@@ -41,4 +41,6 @@ dependencies {
     // 下面两行为了使用ButterKnife项目而添加
     compile 'com.jakewharton:butterknife:8.2.1'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
+    // 为了使用引导页而添加
+    compile 'io.reactivex:rxandroid:1.2.1'
 }
