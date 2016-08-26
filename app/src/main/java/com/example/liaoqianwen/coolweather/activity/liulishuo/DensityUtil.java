@@ -3,8 +3,6 @@ package com.example.liaoqianwen.coolweather.activity.liulishuo;
 import android.content.Context;
 
 /**
- * 作者： 巴掌 on 16/8/23 21:58
- * Github: https://github.com/JeasonWong
  */
 public class DensityUtil {
 

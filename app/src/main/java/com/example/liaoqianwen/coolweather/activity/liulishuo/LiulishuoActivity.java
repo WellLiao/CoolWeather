@@ -39,7 +39,7 @@ public class LiulishuoActivity extends AppCompatActivity{
     private PreviewIndicator mIndicator;
 
     private List<View> mViewList = new ArrayList<>();
-    // 每个引导页上的文字
+    // 每个引导页上的文字图片
     private int[] mImageResIds = new int[]{R.mipmap.intro_text_1, R.mipmap.intro_text_2, R.mipmap.intro_text_3};
     private CustomPagerAdapter mAdapter;
 
@@ -55,9 +55,9 @@ public class LiulishuoActivity extends AppCompatActivity{
         setContentView(R.layout.activity_liulishuo);
 //播放视频的VideoView
         mVideoView = (PreviewVideoView) findViewById(R.id.vv_preview);
-//      循环转动的ViewPager
+//      左右滑动的ViewPager
         mVpImage = (ViewPager) findViewById(R.id.vp_image);
-//        循环指示器
+//        循环指示器，就是那几个点
         mIndicator = (PreviewIndicator) findViewById(R.id.indicator);
 /**     VideoView准备播放 */
         mVideoView.setVideoURI(Uri.parse(getVideoPath()));
@@ -119,11 +119,13 @@ public class LiulishuoActivity extends AppCompatActivity{
 
     /**
      * 开启轮询   何时startLoop呢？？  一个是启动后，一个是ViewPager滑动后
+     * 轮询的目的是让视频不断的重复播放，  如果不用Observable则播放完一遍之后就停止了
      */
     private void startLoop() {
         if (null != mLoop) {
             mLoop.unsubscribe();
         }
+//        创建一个按固定时间间隔发射整数序列的Observable
         mLoop = Observable.interval(0, 6 * 1000, TimeUnit.MILLISECONDS)
                 .subscribe(new Action1<Long>() {
                     @Override
@@ -135,6 +137,11 @@ public class LiulishuoActivity extends AppCompatActivity{
                         }
                     }
                 });
+          /** 考虑不用Observable 会是怎样的效果*/
+//        mVideoView.seekTo(mCurrentPage * 6 * 1000);
+//        if (!mVideoView.isPlaying()) {
+//            mVideoView.start();
+//        }
 
     }
 
