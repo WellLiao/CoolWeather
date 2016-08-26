@@ -73,6 +73,11 @@ public class LiulishuoActivity extends AppCompatActivity{
         mVpImage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // 当最后一个你再向左滑动的时候就会进入LoginActivity了
+                if( position == mViewList.size()-1){
+                    LoginActivity.startActivity(LiulishuoActivity.this);
+                    finish();
+                }
 
             }
 
@@ -89,8 +94,7 @@ public class LiulishuoActivity extends AppCompatActivity{
                     toLogin.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(LiulishuoActivity.this, LoginActivity.class);
-                            startActivity(i);
+                            LoginActivity.startActivity(LiulishuoActivity.this);
                         }
                     });
                 }else {

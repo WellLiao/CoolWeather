@@ -1,5 +1,6 @@
 package com.example.liaoqianwen.coolweather.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -42,5 +43,14 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    /**跳转到登录界面
+     * @param activity
+     */
+    public static void startActivity(Activity activity) {
+        Intent i = new Intent(activity,LoginActivity.class);
+        activity.startActivity(i);
+
     }
 }
