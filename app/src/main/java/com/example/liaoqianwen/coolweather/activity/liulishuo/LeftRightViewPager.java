@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
-import com.google.android.gms.dynamic.LifecycleDelegate;
 
 /**
  * Created by liaoqianwen on 2016/8/26.
@@ -26,7 +25,7 @@ public class LeftRightViewPager extends ViewPager {
     }
 
     private void init(){
-        setOnPageChangeListener(listener);
+        addOnPageChangeListener(listener);
     }
 
     public OnPageChangeListener listener = new OnPageChangeListener() {
@@ -65,10 +64,53 @@ public class LeftRightViewPager extends ViewPager {
         }
     };
 
+    public class LeftRightOnPageChangeListener implements OnPageChangeListener{
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            if (isScrolling) {
+                if (lastValue >positionOffsetPixels){
+                    //递减，向右滑动
+                    right =true;
+                    left = false;
+                }else if(lastValue <positionOffsetPixels){
+                    //递增，向左滑动
+                    right = false;
+                    left = true;
+                }else if(lastValue == positionOffsetPixels){
+                    right = left = false;
+                }
+            }
+            lastValue = positionOffsetPixels;
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            if (state == 1){
+                isScrolling = true;
+            }else {
+                isScrolling = false;
+            }
+
+        }
+    }
+
     /**
      * 得到是否向右侧滑动
      */
     public boolean getMoveRight() {
         return right;
+    }
+
+    /**
+     * 得到是否向左侧滑动
+     */
+    public boolean getMoveLeft() {
+        return left;
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ import rx.functions.Action1;
  播放至指定位置可以用VideoView暴露的seekTo(int msec)
  */
 public class LiulishuoActivity extends AppCompatActivity{
+    private static String TAG = "LiulishuoActivity";
+
     private PreviewVideoView mVideoView;
     private ViewPager mVpImage;
     private PreviewIndicator mIndicator;
@@ -48,6 +51,14 @@ public class LiulishuoActivity extends AppCompatActivity{
 
     private Button toLogin;
 
+    //为了实现监听屏幕滑动的方向
+    private boolean left = false;
+    private boolean right = false;
+    private boolean isScrolling = false;
+    private int lastValue = -1;
+    //不想一进入最后一页就跳到登录页面，而是在最后一页向左滑了5次之后再跳到登录页面
+    private int leftCount = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +68,7 @@ public class LiulishuoActivity extends AppCompatActivity{
         mVideoView = (PreviewVideoView) findViewById(R.id.vv_preview);
 //      左右滑动的ViewPager
         mVpImage = (ViewPager) findViewById(R.id.vp_image);
+
 //        循环指示器，就是那几个点
         mIndicator = (PreviewIndicator) findViewById(R.id.indicator);
 /**     VideoView准备播放 */
@@ -73,10 +85,41 @@ public class LiulishuoActivity extends AppCompatActivity{
         mVpImage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // 当最后一个你再向左滑动的时候就会进入LoginActivity了
-                if( position == mViewList.size()-1){
-                    LoginActivity.startActivity(LiulishuoActivity.this);
-                    finish();
+                // 当最后一个你再滑动的时候就会进入LoginActivity了
+//                if( position == mViewList.size()-1){
+//                    LoginActivity.startActivity(LiulishuoActivity.this);
+//                    finish();
+//                }
+
+                //实现监听滑动的方向
+                if (isScrolling) {
+                    if (lastValue >positionOffsetPixels){
+                        //递减，向右滑动
+                        right =true;
+                        left = false;
+                    }else if(lastValue <positionOffsetPixels){
+                        //递增，向左滑动
+                        right = false;
+                        left = true;
+                    }else if(lastValue == positionOffsetPixels){
+                        right = left = false;
+                    }
+                }
+                lastValue = positionOffsetPixels;
+
+                //如果向左滑动,进入登录界面
+                if ( position == mViewList.size() -1) {
+                    if (left){
+                        leftCount ++;
+                        Log.i(TAG, "向左滑动"+leftCount+"次");
+                        if (leftCount == 3){ // 当向左滑了3次时就跳到登录页面
+                            LoginActivity.startActivity(LiulishuoActivity.this);
+                        }
+
+                    }
+                    if (right){
+                        Log.i(TAG, "向右滑动");
+                    }
                 }
 
             }
@@ -104,6 +147,11 @@ public class LiulishuoActivity extends AppCompatActivity{
 
             @Override
             public void onPageScrollStateChanged(int state) {
+                if (state == 1){
+                    isScrolling = true;
+                }else {
+                    isScrolling = false;
+                }
 
             }
         });
@@ -147,6 +195,12 @@ public class LiulishuoActivity extends AppCompatActivity{
 //            mVideoView.start();
 //        }
 
+    }
+
+    @Override
+    protected void onResume() {
+        leftCount = 0;
+        super.onResume();
     }
 
     @Override
